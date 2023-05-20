@@ -21,8 +21,12 @@ from ddjapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
+    path('detail/<int:article_id>', views.detail, name='detail'),
     path('registration/signup/', views.signup, name='signup'),
     path('registration/login/', views.login, name='login'),
     path('registration/logout/', views.logout, name='logout'),
     path('accounts/', include('allauth.urls')),
+    path('deleteComment/<int:article_id>/<int:comment_id>', views.deleteComment, name='deleteComment'),
+    path('recomment/<int:article_id>/<int:comment_id>', views.recomment, name='recomment'),
+    path('deleteRecomment/<int:article_id>/<int:recomment_id>', views.deleteRecomment, name='deleteRecomment'),
 ]

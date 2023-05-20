@@ -2,6 +2,8 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from .models import Article, Comment, Recomment
+
 
 # Create your views here.
 def home(request):
@@ -45,3 +47,32 @@ def logout(request):
     auth.logout(request)
     return redirect('home')
 
+def detail(request, article_id):
+    article=Article.objects.get(id=article_id)
+    if request.method=="POST":
+        Comment.objects.create(
+            article=article,
+            content=request.POST['content'],
+        )
+        return redirect('detail', article_id)
+    return render(request, 'detail.html', {'article':article})
+def delete(request, article_id):
+    article=Article.objects.get(id=article_id).delete()
+    return redirect('home')
+
+def deleteComment(request, article_id, comment_id):
+    Comment.objects.get(id=comment_id).delete()
+    return redirect('detail', article_id)
+
+def recomment(request, article_id, comment_id):
+    comment=Comment.objects.get(id=comment_id)
+    if request.method=="POST":
+        Recomment.objects.create(
+            comment=comment,
+            content=request.POST['content'],
+        )
+        return redirect('detail', article_id)
+
+def deleteRecomment(request, article_id, recomment_id):
+    Recomment.objects.get(id=recomment_id).delete()
+    return redirect('detail', article_id)
