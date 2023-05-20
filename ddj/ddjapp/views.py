@@ -5,6 +5,9 @@ from django.shortcuts import render, redirect
 from .models import Room, Request, Article, Comment, Recomment
 # Create your views here.
 def home(request):
+    if request.method == 'POST':
+        stone_id = request.POST['stone_id']
+        return redirect('stone', stone_id)
     stones = Room.objects.all()
     return render(request, 'home.html', {'stones':stones})
 
@@ -75,3 +78,18 @@ def recomment(request, article_id, comment_id):
 def deleteRecomment(request, article_id, recomment_id):
     Recomment.objects.get(id=recomment_id).delete()
     return redirect('detail', article_id)
+
+def stone(request, stone_id):
+    if request.method=="POST":
+        Room.objects.create(
+            current_member=request.POST['current_member'],
+            want_member=request.POST['want_member'],
+            finished=False,
+            talk_topic=request.POST['talk_topic'],
+            age=request.POST['age'],
+            give_food = request.POST['give_food'],
+            sex = request.POST['sex'],
+            request_member=False,
+        )
+    
+    
