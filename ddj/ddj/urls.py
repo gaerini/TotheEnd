@@ -29,4 +29,6 @@ urlpatterns = [
     path('deleteComment/<int:article_id>/<int:comment_id>', views.deleteComment, name='deleteComment'),
     path('recomment/<int:article_id>/<int:comment_id>', views.recomment, name='recomment'),
     path('deleteRecomment/<int:article_id>/<int:recomment_id>', views.deleteRecomment, name='deleteRecomment'),
+    path('stonedetail', views.stonedetail, name='stonedetail'),
+    path('confirm/', views.confirm, name='confirm'),
 ]
