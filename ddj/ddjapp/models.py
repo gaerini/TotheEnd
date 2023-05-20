@@ -12,6 +12,7 @@ class Room(models.Model):
     sex = models.CharField(max_length=50)
     
     request_member = models.IntegerField(null=True)
+    matched = models.BooleanField(null=False)
 
     def __str__(self):
         return self.give_food
