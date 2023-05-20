@@ -118,7 +118,9 @@ def stone(request):
             age=request.POST['age'],
             give_food = request.POST['give_food'],
             sex = request.POST['sex'],
-            request_member=False,
         )
+        redirect('home')
+    
+    return render(request, 'stackStone.html')
 
     

@@ -7,12 +7,14 @@
 <div class="stone">
     {% csrf_token %}
     <form method="post" action="">
+        {% csrf_token %}
         <input name="current_member" placeholder="술 팟 인원 수를 적어주세요"/>
         <input name="want_member" placeholder="원하는 참석 인원 수를 적어주세요"/>
         <input name="age" placeholder="24/35/45/ 형식으로 나이를 입력해주세요"/>
         <input name="give_food" placeholder="쏠 안주를 적어주세요."/>
         <input name="sex" placeholder="남/여/남 형식으로 성별을 적어주세요"/>
         <input name="talk_topic" placeholder="토크 주제를 입력해주세요"/>
+        <button type='submit'>석탑 쌓기!</button>
     </form>
 </div>
 <h1 class="title">여긴 홈이에용 🫧</h1>
