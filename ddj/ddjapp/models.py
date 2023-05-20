@@ -19,9 +19,8 @@ class Room(models.Model):
 class Template(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='template')
     talk_topic = models.CharField(max_length=20)
-    hobby = models.CharField(max_length=20)
-    age = models.IntegerField()
-    give_food = models.BooleanField()
+    age = models.TextField()
+    give_food = models.TextField()
 
     def __str__(self):
         return self.room.title
