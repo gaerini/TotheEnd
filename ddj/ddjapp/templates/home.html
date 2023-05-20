@@ -7,11 +7,13 @@
 <h1 class="title">여긴 홈이에용 🫧</h1>
 {% for stone in stones %}
 <div>
-    {% csrf_token %}
+    
     <form action="" method="post">
+        {% csrf_token %}
         <input type="hidden" value="{{stone.id}}" name='stone_id'/>
+        <button type='submit'>{{stone.give_food}}</button>
     </form>
-    <button type='submit'>{{stone.give_food}}</a>
+    
 </div>
 {% endfor %}
 

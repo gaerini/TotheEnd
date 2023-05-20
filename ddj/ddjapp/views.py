@@ -10,12 +10,14 @@ from django.http import JsonResponse
 def home(request):
     if request.method == 'POST':
         stone_id = request.POST['stone_id']
-        return redirect('stone', stone_id)
+        print(stone_id, "stone_id")
+        return redirect('stonedetail', stone_id)
     stones = Room.objects.all()
     return render(request, 'home.html', {'stones':stones})
 
-def stonedetail(request):
-    return render(request, 'StoneDetail.html')
+def stonedetail(request, stone_id):
+    stone = Room.objects.get(pk = stone_id)
+    return render(request, 'StoneDetail.html', {'stone': stone})
 
 def signup(request):
     if request.method == 'POST':
@@ -106,7 +108,7 @@ def confirm(request):
         }
         return JsonResponse(response_data)
       
-def stone(request, stone_id):
+def stone(request):
     if request.method=="POST":
         Room.objects.create(
             current_member=request.POST['current_member'],
@@ -118,5 +120,5 @@ def stone(request, stone_id):
             sex = request.POST['sex'],
             request_member=False,
         )
-    
+
     
