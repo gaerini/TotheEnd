@@ -38,6 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ddjapp',
+    #Django comes with an optional “sites” framework
+    'django.contrib.sites',
+    #Django-allauth
+    'allauth',
+    'allauth.account', 
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
