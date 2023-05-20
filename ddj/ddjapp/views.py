@@ -8,6 +8,9 @@ from django.http import JsonResponse
 
 # Create your views here.
 def home(request):
+    if request.method == 'POST':
+        stone_id = request.POST['stone_id']
+        return redirect('stone', stone_id)
     stones = Room.objects.all()
     return render(request, 'home.html', {'stones':stones})
 
@@ -102,3 +105,18 @@ def confirm(request):
             'message': '매칭이 완료되었습니다.'
         }
         return JsonResponse(response_data)
+      
+def stone(request, stone_id):
+    if request.method=="POST":
+        Room.objects.create(
+            current_member=request.POST['current_member'],
+            want_member=request.POST['want_member'],
+            finished=False,
+            talk_topic=request.POST['talk_topic'],
+            age=request.POST['age'],
+            give_food = request.POST['give_food'],
+            sex = request.POST['sex'],
+            request_member=False,
+        )
+    
+    

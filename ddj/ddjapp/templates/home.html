@@ -6,6 +6,13 @@
 {% block section %}
 <h1 class="title">여긴 홈이에용 🫧</h1>
 {% for stone in stones %}
-<div><a href = "http://127.0.0.1:8000/admin/">{{stone.give_food}}</a></div>
+<div>
+    {% csrf_token %}
+    <form action="" method="post">
+        <input type="hidden" value="{{stone.id}}" name='stone_id'/>
+    </form>
+    <button type='submit'>{{stone.give_food}}</a>
+</div>
 {% endfor %}
+
 {% endblock section %}
