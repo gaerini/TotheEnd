@@ -111,15 +111,16 @@ def confirm(request):
 def stone(request):
     if request.method=="POST":
         Room.objects.create(
+            user = request.user,
             current_member=request.POST['current_member'],
             want_member=request.POST['want_member'],
-            finished=False,
             talk_topic=request.POST['talk_topic'],
             age=request.POST['age'],
             give_food = request.POST['give_food'],
             sex = request.POST['sex'],
+            matched = False,
         )
-        redirect('home')
+        return redirect('home')
     
     return render(request, 'stackStone.html')
 
