@@ -5,16 +5,21 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    {% block css/title %} {% endblock css/title %}
+    <title>안주석탑</title>
+    {% block css/title %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'baseStyle.css'%}">
+    {% endblock css/title %}
   </head>
   <body>
-    <nav id="navbar">
-      <p>navbar</p>
-    </nav>
-    <section>{% block section %} {% endblock section %}</section>
-    <footer>
-      <div>🍎 🍎 🍎</div>
-    </footer>
+    <div id="navbar">
+      <div class = "navbtn"><a href = "http://127.0.0.1:8000/admin/">홈</a></div>
+      <div class = "navbtn"><a href = "http://127.0.0.1:8000/admin/">쪽지함</a></div>
+    </div>
+    <section>
+      {% block section %}
+      {% endblock section %}
+    </section>
+
   </body>
 </html>
