@@ -2,10 +2,11 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-
+from .models import Room, Request
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    stones = Room.objects.all()
+    return render(request, 'home.html', {'stones':stones})
 
 def signup(request):
     if request.method == 'POST':
