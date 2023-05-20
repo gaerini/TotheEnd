@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{% static 'confirm.css' %}" type="text/css"/>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,23 @@
     <p>나이: {{ user.age }}</p>
     <p>성별: {{ user.gender }}</p>
     <p>토크안주: {{ user.talk_topic }}</p>
-    <button class="confirm-button">수락</button>
+    <!-- 거절 버튼 만들어야 함 -->
+    <button class="open-button">수락</button>
+ 
+    <div class="modal hidden">
+        <div class="modal-content">
+            <div class="box">
+                <h1>매칭이 성사되었습니다!</h1> 
+                <h1>쪽지함에서 쪽지를 보내보세요.</h1>
+            </div>
+        <div>
+            <button class="close">확인</button>
+        </div>
+        </div>
+    </div>
+    <script src="{% static 'confirm.js' %}"></script>
+
+
 
 </body>
 </html>
