@@ -2,23 +2,13 @@ from django.contrib.auth.models import User
 from django.db import models
 
 class Room(models.Model):
-    # category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    leader = models.ForeignKey(User, on_delete=models.CASCADE, related_name='room')
-    title = models.CharField(max_length=20)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='room')
     current_member = models.TextField()
     want_member = models.TextField()
     finished = models.BooleanField()
-    # template = models.ForeignKey(Template, related_name = 'room')
-
-    def __str__(self):
-        return self.title
-    
-class Template(models.Model):
-    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='template')
     talk_topic = models.CharField(max_length=20)
     age = models.TextField()
     give_food = models.TextField()
-<<<<<<< HEAD
     sex = models.CharField(max_length=50)
     
     request_member = models.IntegerField(null=True)
@@ -34,10 +24,6 @@ class Request(models.Model):
     def __str__(self):
         return self.sender
     
-=======
-
-    def __str__(self):
-        return self.room.title
 
 class Article(models.Model):
     title=models.CharField(max_length=200)
@@ -61,4 +47,3 @@ class Recomment(models.Model):
 
     def __str__(self):
         return self.content
->>>>>>> 54e0f47e3f36fda8c0c33498f95dfde306650356

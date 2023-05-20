@@ -2,13 +2,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-<<<<<<< HEAD
-from .models import Room, Request
-=======
-from .models import Article, Comment, Recomment
-
-
->>>>>>> 54e0f47e3f36fda8c0c33498f95dfde306650356
+from .models import Room, Request, Article, Comment, Recomment
 # Create your views here.
 def home(request):
     stones = Room.objects.all()
