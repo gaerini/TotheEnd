@@ -1,0 +1,50 @@
+.big_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5vh;
+    background-color: lightgray;
+    padding: 2vw;
+}
+
+.hi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    background-color: white;
+    margin-top: 27vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+
+
+
+}
+
+.registration-input {
+    margin-bottom: 2vh;
+}
+
+.title { 
+    font-size: larger;
+    font-weight: bolder;
+}
