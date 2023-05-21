@@ -2,7 +2,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from .models import Room, Request, Article, Comment, Recomment
+from .models import Room, Request, Chatting, Comment, Recomment
 from django.shortcuts import render
 from django.http import JsonResponse
 
