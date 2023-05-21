@@ -34,7 +34,7 @@ class Chatting(models.Model):
     content = models.TextField()
 
     def __str__(self):
-        return self.room
+        return self.content
     
 class Comment(models.Model):
     article=models.ForeignKey(Chatting, on_delete=models.CASCADE, related_name='comments')

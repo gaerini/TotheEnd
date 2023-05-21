@@ -89,14 +89,14 @@ def logout(request):
     auth.logout(request)
     return redirect('home')
 
-def detail(request, room_id):
-    article=Chatting.objects.get(pk=room_id)
+def detail(request, article_id):
+    article=Chatting.objects.get(pk=article_id)
     if request.method=="POST":
         Comment.objects.create(
             article=article,
             content=request.POST['content'],
         )
-        return redirect('detail', room_id)
+        return redirect('detail', article_id)
     return render(request, 'detail.html', {'article':article})
 
 def delete(request, room_id):
@@ -107,14 +107,14 @@ def deleteComment(request, room_id, comment_id):
     Comment.objects.get(id=comment_id).delete()
     return redirect('detail', room_id)
 
-def recomment(request, room_id, comment_id):
+def recomment(request, article_id, comment_id):
     comment=Comment.objects.get(id=comment_id)
     if request.method=="POST":
         Recomment.objects.create(
             comment=comment,
             content=request.POST['content'],
         )
-        return redirect('detail', room_id)
+        return redirect('detail', article_id)
 
 def deleteRecomment(request, room_id, recomment_id):
     Recomment.objects.get(id=recomment_id).delete()
