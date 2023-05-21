@@ -1,37 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <link rel="stylesheet" href="{% static 'confirm.css' %}" type="text/css"/>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+=======
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>{{ user.give_food }} 석탑</h1>
     <h2>참여 요청이 도착했습니다. 수락하시겠습니까?</h2>
-    <p>현재인원: {{ user.current_member }}</p>
-    <p>희망인원: {{ user.want_member }}</p>
-    <p>나이: {{ user.age }}</p>
-    <p>성별: {{ user.gender }}</p>
-    <p>토크안주: {{ user.talk_topic }}</p>
-    <!-- 거절 버튼 만들어야 함 -->
-    <button class="open-button">수락</button>
- 
-    <div class="modal hidden">
-        <div class="modal-content">
-            <div class="box">
-                <h1>매칭이 성사되었습니다!</h1> 
-                <h1>쪽지함에서 쪽지를 보내보세요.</h1>
-            </div>
-        <div>
-            <button class="close">확인</button>
-        </div>
-        </div>
-    </div>
-    <script src="{% static 'confirm.js' %}"></script>
-
-
-
-</body>
+    <p>현재인원: {{ stoneRequest.current_member }}</p>
+    <p>희망인원: {{ stoneRequest.want_member }}</p>
+    <p>나이: {{ stoneRequest.age }}</p>
+    <p>성별: {{ stoneRequest.gender }}</p>
+    <p>토크안주: {{ stoneRequest.talk_topic }}</p>
+    <form action="{% url 'confirm' stoneRequest.receiver %}" method="post">
+      {% csrf_token %}
+      <button type="submit" name="action" value="accept">수락</button>
+      <button type="submit" name="action" value="reject">거절</button>
+    </form>
+  </body>
 </html>

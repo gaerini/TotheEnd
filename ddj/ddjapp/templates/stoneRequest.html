@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block css/title %}
+<title>Article List</title>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'stoneStyle.css'%}" />
+{% endblock css/title %} {% block section %}
+<div class="stone">
+  {% csrf_token %}
+  <form method="post" action="">
+    {% csrf_token %}
+    <input name="member" placeholder="술 팟 인원 수를 적어주세요" />
+    <input name="age" placeholder="24/35/45/ 형식으로 나이를 입력해주세요" />
+    <input name="sex" placeholder="남/여/남 형식으로 성별을 적어주세요" />
+    <input name="talk_topic" placeholder="토크 주제를 입력해주세요" />
+    <button type="submit">신청</button>
+  </form>
+</div>
+
+{% endblock section %}
