@@ -26,7 +26,7 @@ def stoneDetail(request, room_id):
     return render(request, 'stoneDetail.html', {'room': room})
 
 
-def myStone(request, room_id):
+# def myStone(request, room_id):
 
 
 def stoneRequest(request, room_id):
