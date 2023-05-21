@@ -33,7 +33,7 @@ urlpatterns = [
     path('deleteRecomment/<int:article_id>/<int:recomment_id>', views.deleteRecomment, name='deleteRecomment'),
     path('stoneDetail/<int:room_id>', views.stoneDetail, name='stoneDetail'),
     path('stoneRequest/<int:room_id>', views.stoneRequest, name='stoneRequest'),
-    path('confirm/', views.confirm, name='conf<int:room_id>irm'),
+    path('confirm/<int:room_id>', views.confirm, name='confirm'),
     path('stone/', views.stone, name='stone'),
 
 ]

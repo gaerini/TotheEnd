@@ -119,13 +119,15 @@ def deleteRecomment(request, article_id, recomment_id):
 
 
 def confirm(request, room_id):
+    request=Request.objects.get(reciever.id=room_id)
     if request.method == 'POST':
         action = request.POST.get('action')
 
         if action == 'accept':
             room.matched = True
         return render(request, 'your_template.html')
-    return render(request, 'your_template.html')
+    
+    return render(request, 'confirm.html', {})
 
         
       
