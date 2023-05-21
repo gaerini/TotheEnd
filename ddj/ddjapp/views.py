@@ -2,7 +2,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from .models import Room, Request, Article, Comment, Recomment
+from .models import Room, Request, Chatting, Comment, Recomment
 from django.shortcuts import render
 from django.http import JsonResponse
 
@@ -87,45 +87,46 @@ def logout(request):
     auth.logout(request)
     return redirect('home')
 
-def detail(request, article_id):
-    article=Article.objects.get(id=article_id)
+def detail(request, room_id):
+    article=Chatting.objects.get(pk=room_id)
     if request.method=="POST":
         Comment.objects.create(
             article=article,
             content=request.POST['content'],
         )
-        return redirect('detail', article_id)
+        return redirect('detail', room_id)
     return render(request, 'detail.html', {'article':article})
-def delete(request, article_id):
-    article=Article.objects.get(id=article_id).delete()
+
+def delete(request, room_id):
+    article=Chatting.objects.get(id=room_id).delete()
     return redirect('home')
 
-def deleteComment(request, article_id, comment_id):
+def deleteComment(request, room_id, comment_id):
     Comment.objects.get(id=comment_id).delete()
-    return redirect('detail', article_id)
+    return redirect('detail', room_id)
 
-def recomment(request, article_id, comment_id):
+def recomment(request, room_id, comment_id):
     comment=Comment.objects.get(id=comment_id)
     if request.method=="POST":
         Recomment.objects.create(
             comment=comment,
             content=request.POST['content'],
         )
-        return redirect('detail', article_id)
+        return redirect('detail', room_id)
 
-def deleteRecomment(request, article_id, recomment_id):
+def deleteRecomment(request, room_id, recomment_id):
     Recomment.objects.get(id=recomment_id).delete()
-    return redirect('detail', article_id)
+    return redirect('detail', room_id)
 
 
 def confirm(request, room_id):
-    request=Request.objects.get(reciever.id=room_id)
-    if request.method == 'POST':
-        action = request.POST.get('action')
+    # request=Request.objects.get(reciever.id=room_id)
+    # if request.method == 'POST':
+    #     action = request.POST.get('action')
 
-        if action == 'accept':
-            room.matched = True
-        return render(request, 'your_template.html')
+    #     if action == 'accept':
+    #         room.matched = True
+    #     return render(request, 'your_template.html')
     
     return render(request, 'confirm.html', {})
 
