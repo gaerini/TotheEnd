@@ -32,16 +32,17 @@ def stoneRequest(request, room_id):
         age = request.POST.get('age')
         sex = request.POST.get('sex')
 
-        reciever = Room.objects.get(id=room_id)
+        receiver = Room.objects.get(id=room_id)
         sender = request.user
         Request.objects.create(
             sender=sender, 
-            reciever=reciever, 
+            receiver=receiver, 
             member=member, 
             talk_topic=talk_topic, 
             age=age, 
             sex=sex
             )
+        
         
         return redirect('home')  # 홈페이지로 리다이렉트 혹은 메시지를 보여줄 수 있음
 
@@ -119,15 +120,16 @@ def deleteRecomment(request, article_id, recomment_id):
 
 
 def confirm(request, room_id):
-    request=Request.objects.get(reciever.id=room_id)
+    stoneRequest=Request.objects.get(receiver__id=room_id)
+    room = Room.objects.get(id=room_id)
     if request.method == 'POST':
         action = request.POST.get('action')
 
         if action == 'accept':
             room.matched = True
-        return render(request, 'your_template.html')
+        return redirect('home')
     
-    return render(request, 'confirm.html', {})
+    return render(request, 'confirm.html', {'stoneRequest':stoneRequest})
 
         
       
