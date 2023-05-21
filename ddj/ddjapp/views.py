@@ -44,6 +44,7 @@ def stoneRequest(request, room_id):
             )
         
         
+        
         return redirect('home')  # 홈페이지로 리다이렉트 혹은 메시지를 보여줄 수 있음
 
     return render(request, 'stoneRequest.html')
