@@ -1,27 +1,27 @@
+{% extends 'base.html' %} {% block css/title %}
+<title>Article List</title>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'detail.css'%}"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
+{% endblock css/title %} {% block section %}
 <div class="comments">
-<form method="POST">
+  {% for comment in article.comments.all %}
+  <div class="comment">
+    <p>{{comment.content}}</p>
+  </div>
+    <br>
+  <form action="{% url 'recomment' article.id comment.id %}" method="POST">
     {% csrf_token %}
-    <input type="text" name="content" placeholder="댓글 입력" />
-    <button type="submit">작성하기</button>
-</form>
-{% for comment in article.comments.all %}
-<div class="comment">
-    <li>{{comment.content}}</li>
-</div>
-
-<form action="{% url 'recomment' article.id comment.id %}" method="POST">
-    {% csrf_token %} ⤷<input
-    type="text"
-    name="content"
-    placeholder="대댓글 입력"
-    />
-    <button type="submit">작성하기</button>
-</form>
-<div class="recomments">
+    <input type="text" name="content" placeholder="내용을 작성해주세요" />
+    <button  class ="button" type="submit">보내기</button>
+  </form>
+  <div class="recomments">
     {% for recomment in comment.recomments.all %}
-    <li>{{recomment.content}}</li>
-    >
+    <p>{{recomment.content}}</p>
     {% endfor %}
+  </div>
+  {% endfor %}
 </div>
-{% endfor %}
-</div>
+{% endblock section %}
