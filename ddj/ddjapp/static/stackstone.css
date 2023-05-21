@@ -1,0 +1,35 @@
+.box {
+  background-color: white;
+  width: 70vw;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25vh;
+}
+
+.bigbox {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.q {
+  margin: 3vw;
+  width: 60vw;
+}
+
+.submit {
+  margin-top: 5vw;
+  display: flex;
+  justify-content: center;
+}
+
+.rock {
+  width: 10vw;
+}
+
+.rock {
+  width: 10vw;
+}

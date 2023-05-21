@@ -6,6 +6,7 @@ class Room(models.Model):
     current_member = models.TextField()
     want_member = models.IntegerField()
     matched = models.BooleanField(null=False)
+    
     talk_topic = models.CharField(max_length=20)
     age = models.TextField()
     give_food = models.TextField()
@@ -23,11 +24,11 @@ class Request(models.Model):
     sex = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.sender
+        return self.talk_topic
     
 
 class Chatting(models.Model):
-    room = models.ForeignKey(Room,  on_delete=models.CASCADE, name='roomLeader')
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, name='roomLeader')
     request = models.ForeignKey(Request, on_delete=models.CASCADE, name='requester')
     content = models.TextField()
 
