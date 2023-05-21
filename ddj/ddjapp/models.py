@@ -12,11 +12,11 @@ class Room(models.Model):
     sex = models.CharField(max_length=50)
    
     def __str__(self):
-        return self.give_food
+        return str(self.id)
 
 class Request(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent')
-    reciever = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='recieved')
+    receiver = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='recieved')
     member = models.TextField()
     talk_topic = models.CharField(max_length=20)
     age = models.TextField()
