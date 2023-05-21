@@ -25,10 +25,6 @@ def stoneDetail(request, room_id):
 
     return render(request, 'stoneDetail.html', {'room': room})
 
-
-# def myStone(request, room_id):
-
-
 def stoneRequest(request, room_id):
     if request.method == 'POST':
         member = request.POST.get('member')
@@ -109,12 +105,13 @@ def detail(request, article_id):
         return redirect('detail', article_id)
     return render(request, 'detail.html', {'article':article})
 def delete(request, article_id):
-    article=Article.objects.get(id=article_id).delete()
+    article=Chatting.objects.get(id=article_id).delete()
     return redirect('home')
 
 def deleteComment(request, article_id, comment_id):
     Comment.objects.get(id=comment_id).delete()
     return redirect('detail', article_id)
+
 
 def recomment(request, article_id, comment_id):
     comment=Comment.objects.get(id=comment_id)
@@ -167,4 +164,8 @@ def stone(request):
     
     return render(request, 'stackStone.html')
 
+
+def jjokjiham(request, Room_id):
+    requests = Request.objects.get(reciever_id = Room_id)
+    return render(request, 'jjokjiham.html', {'requests': requests})
     

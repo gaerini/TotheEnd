@@ -36,4 +36,5 @@ urlpatterns = [
     path('confirm/<int:room_id>', views.confirm, name='confirm'),
     path('stone/', views.stone, name='stone'),
 
+    path('jjokji/<int:Room_id>', views.jjokjiham, name='jjokji'),
 ]
