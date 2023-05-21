@@ -1,27 +1,26 @@
 <div class="comments">
-<form method="POST">
+  <form method="POST">
     {% csrf_token %}
     <input type="text" name="content" placeholder="댓글 입력" />
     <button type="submit">작성하기</button>
-</form>
-{% for comment in article.comments.all %}
-<div class="comment">
+  </form>
+  {% for comment in article.comments.all %}
+  <div class="comment">
     <li>{{comment.content}}</li>
-</div>
+  </div>
 
-<form action="{% url 'recomment' article.id comment.id %}" method="POST">
+  <form action="{% url 'recomment' article.id comment.id %}" method="POST">
     {% csrf_token %} ⤷<input
-    type="text"
-    name="content"
-    placeholder="대댓글 입력"
+      type="text"
+      name="content"
+      placeholder="대댓글 입력"
     />
     <button type="submit">작성하기</button>
-</form>
-<div class="recomments">
+  </form>
+  <div class="recomments">
     {% for recomment in comment.recomments.all %}
     <li>{{recomment.content}}</li>
-    >
     {% endfor %}
-</div>
-{% endfor %}
+  </div>
+  {% endfor %}
 </div>

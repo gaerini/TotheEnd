@@ -25,6 +25,10 @@ def stoneDetail(request, room_id):
 
     return render(request, 'stoneDetail.html', {'room': room})
 
+
+def myStone(request, room_id):
+
+
 def stoneRequest(request, room_id):
     if request.method == 'POST':
         member = request.POST.get('member')
@@ -111,7 +115,6 @@ def delete(request, article_id):
 def deleteComment(request, article_id, comment_id):
     Comment.objects.get(id=comment_id).delete()
     return redirect('detail', article_id)
-
 
 def recomment(request, article_id, comment_id):
     comment=Comment.objects.get(id=comment_id)
