@@ -29,6 +29,6 @@ a:visited {
 a:hover {
   color: black;
 }
-a.navbtn:active {
+a:active {
   color: black;
 }
