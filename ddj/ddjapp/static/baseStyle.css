@@ -1,4 +1,34 @@
 #navbar {
     display: flex;
     justify-content: space-between;
+    background-color: gray;
+    color: black;
+    font-weight: bolder;
+    padding: 3vw;
+    font-size: 3vw;
 }
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-image: url("https://img.freepik.com/free-photo/cobblestone-walkway-texture_1194-7009.jpg?w=1800&t=st=1684630040~exp=1684630640~hmac=a5c27f64639c83f302da5f4642a46ea8ee61a7a88a3873c3f8e56b8c759473b7");
+    background-size: cover;
+    margin: 0px;
+}
+
+a {
+    text-decoration-line: none;
+}
+
+a:link {
+        color : black;
+      }
+      a:visited {
+        color : black;
+      }
+      a:hover {
+        color : black;
+      }
+      a.navbtn:active {
+        color : black;
+      }

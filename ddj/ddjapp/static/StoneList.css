@@ -12,3 +12,38 @@
 .modal.hidden {
     display: none;
 }
+
+.info {
+    background-color: white;
+    width: 70vw;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25vh;
+
+}
+
+.bigbox {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.modal-content {
+    width: 70vw;
+    height: 50vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.ask {
+    margin-left: 8vw;
+    margin-right: 5vw;
+
+}
+
