@@ -5,8 +5,7 @@ class Room(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='room')
     current_member = models.TextField()
     want_member = models.IntegerField()
-    matched = models.BooleanField(null=False)
-    
+    matched = models.IntegerField(default=0)
     talk_topic = models.CharField(max_length=20)
     age = models.TextField()
     give_food = models.TextField()
