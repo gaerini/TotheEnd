@@ -108,7 +108,7 @@ def deleteComment(request, article_id, comment_id):
     Comment.objects.get(id=comment_id).delete()
     return redirect('detail', article_id)
 
-def recomment(request, article_id, comment_id):
+
 def recomment(request, article_id, comment_id):
     comment=Comment.objects.get(id=comment_id)
     if request.method=="POST":
