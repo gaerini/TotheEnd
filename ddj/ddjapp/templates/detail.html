@@ -9,7 +9,7 @@
     <li>{{comment.content}}</li>
 </div>
 
-<form action="{% url 'recomment' room.id comment.id %}" method="POST">
+<form action="{% url 'recomment' article.id comment.id %}" method="POST">
     {% csrf_token %} ⤷<input
     type="text"
     name="content"
@@ -20,7 +20,7 @@
 <div class="recomments">
     {% for recomment in comment.recomments.all %}
     <li>{{recomment.content}}</li>
-    
+    >
     {% endfor %}
 </div>
 {% endfor %}

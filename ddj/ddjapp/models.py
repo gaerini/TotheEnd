@@ -23,21 +23,20 @@ class Request(models.Model):
     sex = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.talk_topic
+        return self.sender
     
 
-
-    
-class Chatting(models.Model):
-    room = models.ForeignKey(Room,  on_delete=models.CASCADE, name='roomLeader')
-    request = models.ForeignKey(Request, on_delete=models.CASCADE, name='requester')
-    content = models.TextField()
+class Article(models.Model):
+    title=models.CharField(max_length=200)
+    content=models.TextField()
+    category=models.CharField(max_length=50, null=True)
+    time=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.room
+        return self.title
     
 class Comment(models.Model):
-    article=models.ForeignKey(Chatting, on_delete=models.CASCADE, related_name='comments')
+    article=models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
     content=models.TextField()
 
     def __str__(self):

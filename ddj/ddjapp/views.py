@@ -2,7 +2,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from .models import Room, Request, Chatting, Comment, Recomment
+from .models import Room, Request, Article, Comment, Recomment
 from django.shortcuts import render
 from django.http import JsonResponse
 
@@ -32,11 +32,11 @@ def stoneRequest(request, room_id):
         age = request.POST.get('age')
         sex = request.POST.get('sex')
 
-        receiver = Room.objects.get(id=room_id)
+        room = Room.objects.get(id=room_id)
         sender = request.user
         Request.objects.create(
             sender=sender, 
-            receiver=receiver, 
+            receiver=room, 
             member=member, 
             talk_topic=talk_topic, 
             age=age, 
@@ -44,6 +44,8 @@ def stoneRequest(request, room_id):
             )
         
         
+        
+
         
         return redirect('home')  # 홈페이지로 리다이렉트 혹은 메시지를 보여줄 수 있음
 
@@ -89,36 +91,35 @@ def logout(request):
     auth.logout(request)
     return redirect('home')
 
-def detail(request, room_id):
-    article=Chatting.objects.get(pk=room_id)
+def detail(request, article_id):
+    article=Article.objects.get(id=article_id)
     if request.method=="POST":
         Comment.objects.create(
             article=article,
             content=request.POST['content'],
         )
-        return redirect('detail', room_id)
+        return redirect('detail', article_id)
     return render(request, 'detail.html', {'article':article})
-
-def delete(request, room_id):
-    article=Chatting.objects.get(id=room_id).delete()
+def delete(request, article_id):
+    article=Article.objects.get(id=article_id).delete()
     return redirect('home')
 
-def deleteComment(request, room_id, comment_id):
+def deleteComment(request, article_id, comment_id):
     Comment.objects.get(id=comment_id).delete()
-    return redirect('detail', room_id)
+    return redirect('detail', article_id)
 
-def recomment(request, room_id, comment_id):
+def recomment(request, article_id, comment_id):
     comment=Comment.objects.get(id=comment_id)
     if request.method=="POST":
         Recomment.objects.create(
             comment=comment,
             content=request.POST['content'],
         )
-        return redirect('detail', room_id)
+        return redirect('detail', article_id)
 
-def deleteRecomment(request, room_id, recomment_id):
+def deleteRecomment(request, article_id, recomment_id):
     Recomment.objects.get(id=recomment_id).delete()
-    return redirect('detail', room_id)
+    return redirect('detail', article_id)
 
 
 def confirm(request, room_id):
