@@ -2,7 +2,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from .models import Room, Request, Article, Comment, Recomment
+from .models import Room, Request, Chatting, Comment, Recomment
 from django.shortcuts import render
 from django.http import JsonResponse
 
@@ -96,7 +96,7 @@ def logout(request):
     return redirect('home')
 
 def detail(request, article_id):
-    article=Article.objects.get(id=article_id)
+    article=Chatting.objects.get(pk=article_id)
     if request.method=="POST":
         Comment.objects.create(
             article=article,
@@ -111,6 +111,7 @@ def delete(request, article_id):
 def deleteComment(request, article_id, comment_id):
     Comment.objects.get(id=comment_id).delete()
     return redirect('detail', article_id)
+
 
 def recomment(request, article_id, comment_id):
     comment=Comment.objects.get(id=comment_id)
