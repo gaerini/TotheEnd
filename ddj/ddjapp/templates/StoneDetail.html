@@ -7,11 +7,11 @@
 {% block section %}
 <div class="bigbox">
     <div class="info">
-    <p>현재인원: {{ stone.current_member }}</p>
-    <p>희망인원: {{ stone.want_member }}</p>
-    <p>나이: {{ stone.age }}</p>
-    <p>성별: {{ stone.sex }}</p>
-    <p>토크안주: {{ stone.talk_topic }}</p>
+    <p>현재인원: {{ room.current_member }}</p>
+    <p>희망인원: {{ room.want_member }}</p>
+    <p>나이: {{ room.age }}</p>
+    <p>성별: {{ room.sex }}</p>
+    <p>토크안주: {{ room.talk_topic }}</p>
     <button class="open-button">참여하기</button>
 
     </div>
@@ -20,15 +20,22 @@
     <div class="modal hidden">
         <div class="modal-content">
             <div class="box">
-                <p class="ask">{{ stone.give_food }} 석탑에</p>
-                <p class="ask">참여 요청을 보내시겠습니까?</p>
-
+                <h1>{{ room.give_food }} 석탑에 참여 요청을 보내시겠습니까?</h1>
             </div>
         <div>
             <a href="">예</a>
             <button class="close">아니오</button>
         </div>
-        </div>
+        <form method="POST" action="{% url 'stoneDetail' room.id %}">
+          {% csrf_token %}
+          <input type="hidden" name="room_id" value="{{ room.id }}" />
+
+          <button type="submit" name="action" value="send">Send Request</button>
+          <button type="submit" name="action" value="cancel">
+            Cancel Request
+          </button>
+        </form>
+      </div>
     </div>
     <script src="{% static 'StoneList.js' %}"></script>
 
