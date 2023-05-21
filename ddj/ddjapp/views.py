@@ -92,7 +92,7 @@ def logout(request):
     return redirect('home')
 
 def detail(request, article_id):
-    article=Article.objects.get(id=article_id)
+    article=Chatting.objects.get(pk=article_id)
     if request.method=="POST":
         Comment.objects.create(
             article=article,

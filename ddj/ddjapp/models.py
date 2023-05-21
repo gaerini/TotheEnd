@@ -33,7 +33,7 @@ class Article(models.Model):
     time=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.title
+        return self.content
     
 class Comment(models.Model):
     article=models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
