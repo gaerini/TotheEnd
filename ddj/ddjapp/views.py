@@ -38,7 +38,7 @@ def stoneRequest(request, room_id):
 
         room = Room.objects.get(id=room_id)
         sender = request.user
-        if room.matched == False:
+        if room.matched == 0:
             Request.objects.create(
                 sender=sender, 
                 receiver=room, 
@@ -48,7 +48,7 @@ def stoneRequest(request, room_id):
                 sex=sex
                 )
             Room.objects.filter(id=room_id).update(
-                    matched = True
+                    matched = 1
                 )
         else :
             return redirect('stone') # 여기에 오류 메세지, 이미 matched 됐다
@@ -138,8 +138,13 @@ def confirm(request, room_id):
 
         if action == 'reject':
             Room.objects.filter(id=room_id).update(
-                matched = False
+                matched = 0
             )
+        elif action == 'accept':    
+            Room.objects.filter(id=room_id).update(
+                matched = 2
+            )
+
         return redirect('home')
     
     return render(request, 'confirm.html', {'stoneRequest':stoneRequest})
@@ -156,7 +161,7 @@ def stone(request):
             age=request.POST['age'],
             give_food = request.POST['give_food'],
             sex = request.POST['sex'],
-            matched = False,
+            matched = 0,
         )
         return redirect('home')
     
