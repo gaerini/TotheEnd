@@ -11,13 +11,43 @@ def home(request):
     if request.method == 'POST':
         stone_id = request.POST['stone_id']
         print(stone_id, "stone_id")
-        return redirect('stonedetail', stone_id)
+        return redirect('stoneDetail', stone_id)
     stones = Room.objects.all()
     return render(request, 'home.html', {'stones':stones})
 
-def stonedetail(request, stone_id):
-    stone = Room.objects.get(pk = stone_id)
-    return render(request, 'StoneDetail.html', {'stone': stone})
+def stoneDetail(request, room_id):
+    room = Room.objects.get(pk = room_id)
+    if request.method == 'POST':
+        action = request.POST.get('action')
+
+        if action == 'send':
+            return redirect('stoneRequest', room_id)
+
+    return render(request, 'stoneDetail.html', {'room': room})
+
+def stoneRequest(request, room_id):
+    if request.method == 'POST':
+        member = request.POST.get('member')
+        talk_topic = request.POST.get('talk_topic')
+        age = request.POST.get('age')
+        sex = request.POST.get('sex')
+
+        reciever = Room.objects.get(id=room_id)
+        sender = request.user
+        Request.objects.create(
+            sender=sender, 
+            reciever=reciever, 
+            member=member, 
+            talk_topic=talk_topic, 
+            age=age, 
+            sex=sex
+            )
+        
+        return redirect('home')  # 홈페이지로 리다이렉트 혹은 메시지를 보여줄 수 있음
+
+    return render(request, 'stoneRequest.html')
+
+
 
 def signup(request):
     if request.method == 'POST':
@@ -88,25 +118,16 @@ def deleteRecomment(request, article_id, recomment_id):
     return redirect('detail', article_id)
 
 
-def confirm(request):
-    if request.method == 'POST' and request.is_ajax():
-        # 매칭 완료 버튼이 눌렸을 때의 로직을 구현합니다.
-        # 예시로 Room 모델을 가정하고 해당 모델의 matched 필드를 True로 변경하는 코드를 작성합니다.
+def confirm(request, room_id):
+    if request.method == 'POST':
+        action = request.POST.get('action')
+
+        if action == 'accept':
+            room.matched = True
+        return render(request, 'your_template.html')
+    return render(request, 'your_template.html')
+
         
-        # 예시: Room 객체 가져오기
-        room_id = request.POST.get('room_id')  # AJAX 요청에서 전달된 방(room)의 ID를 가져옵니다.
-        room = Room.objects.get(id=room_id)  # 방 객체를 가져옵니다.
-
-        # 매칭 완료 처리
-        room.matched = True  # matched 필드 값을 True로 변경합니다.
-        room.save()  # 변경사항을 저장합니다.
-
-        # 변경된 값을 응답으로 반환합니다.
-        response_data = {
-            'success': True,
-            'message': '매칭이 완료되었습니다.'
-        }
-        return JsonResponse(response_data)
       
 def stone(request):
     if request.method=="POST":
