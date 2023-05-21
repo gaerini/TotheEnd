@@ -23,7 +23,7 @@ class Request(models.Model):
     sex = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.sender
+        return self.talk_topic
     
 
 class Chatting(models.Model):

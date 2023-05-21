@@ -34,18 +34,22 @@ def stoneRequest(request, room_id):
 
         room = Room.objects.get(id=room_id)
         sender = request.user
-        Request.objects.create(
-            sender=sender, 
-            receiver=room, 
-            member=member, 
-            talk_topic=talk_topic, 
-            age=age, 
-            sex=sex
-            )
-        
-        
-        
+        if room.matched == False:
+            Request.objects.create(
+                sender=sender, 
+                receiver=room, 
+                member=member, 
+                talk_topic=talk_topic, 
+                age=age, 
+                sex=sex
+                )
+            Room.objects.filter(id=room_id).update(
+                    matched = True
+                )
+        else :
+            return redirect('stone') # 여기에 오류 메세지, 이미 matched 됐다
 
+            
         
         return redirect('home')  # 홈페이지로 리다이렉트 혹은 메시지를 보여줄 수 있음
 
@@ -128,8 +132,10 @@ def confirm(request, room_id):
     if request.method == 'POST':
         action = request.POST.get('action')
 
-        if action == 'accept':
-            room.matched = True
+        if action == 'reject':
+            Room.objects.filter(id=room_id).update(
+                matched = False
+            )
         return redirect('home')
     
     return render(request, 'confirm.html', {'stoneRequest':stoneRequest})
