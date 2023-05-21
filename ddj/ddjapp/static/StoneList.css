@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .hidden {
     display: none;
 }
@@ -13,3 +14,51 @@
     align-items: center;
     background-color: aqua;
 }
+=======
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.info {
+  background-color: white;
+  width: 70vw;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25vh;
+}
+
+.bigbox {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.modal-content {
+  width: 70vw;
+  height: 50vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.ask {
+  margin-left: 8vw;
+  margin-right: 5vw;
+}
+>>>>>>> 25f65dc92c260d6b2ba7d22f44202dd96baa88ae

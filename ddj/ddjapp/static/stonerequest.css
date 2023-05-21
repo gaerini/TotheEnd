@@ -1,0 +1,36 @@
+.box {
+    background-color: white;
+    width: 80vw;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 25vh;
+  }
+  
+.bigbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.smallbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.ask {
+    margin: 3vw;
+    width: 60vw;
+}
+
+.button {
+    margin-top: 3vw;
+}
+
+.rock {
+    width: 10vw;
+}

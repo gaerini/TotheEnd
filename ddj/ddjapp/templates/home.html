@@ -1,8 +1,28 @@
 {% extends 'base.html' %} {% block css/title %}
 <title>Article List</title>
 {% load static %}
-<link rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{% static 'home.css' %}" type="text/css" />
 {% endblock css/title %} {% block section %}
-<h1 class="title">여긴 홈이에용 🫧</h1>
+<!-- <img class="background-image" src="https://img.freepik.com/free-photo/cobblestone-walkway-texture_1194-7009.jpg?w=1800&t=st=1684630040~exp=1684630640~hmac=a5c27f64639c83f302da5f4642a46ea8ee61a7a88a3873c3f8e56b8c759473b7" alt="Background Image"> -->
 
+<div class="container">
+  <h1 class="title">안주석탑</h1>
+
+  {% csrf_token %}
+  <a class="plus" href="http://127.0.0.1:8000/stone/"><span>+</span></a>
+
+  {% for stone in stones %}
+  <div class="stone-tower">
+    <form action="" method="post">
+      {% csrf_token %}
+      <input type="hidden" value="{{stone.id}}" name="stone_id" />
+      <button class="stone" type="submit">
+        <span>{{stone.give_food}}</span>
+      </button>
+    </form>
+  </div>
+
+  {% endfor %}
+
+</div>
 {% endblock section %}

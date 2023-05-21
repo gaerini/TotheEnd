@@ -1,0 +1,62 @@
+{% extends 'base.html' %} {% block css/title %}
+<title>Article List</title>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'stackstone.css'%}" />
+{% endblock css/title %} {% block section %}
+<div class="bigbox">
+  <div class="box">
+    <div>
+      <img
+        class="rock"
+        src="https://png.pngtree.com/png-clipart/20220826/ourmid/pngtree-cartoon-big-stone-transparent-png-image_6122941.png"
+      />
+    </div>
+
+    {% csrf_token %}
+    <form method="post" action="">
+      {% csrf_token %}
+      <input
+        class="q"
+        name="current_member"
+        placeholder="술 팟 인원 수를 적어주세요"
+      />
+      <br />
+      <input
+        class="q"
+        name="want_member"
+        placeholder="원하는 참석 인원 수를 적어주세요"
+      />
+      <br />
+
+      <input
+        class="q"
+        name="age"
+        placeholder="24/35/45/ 형식으로 나이를 입력해주세요"
+      />
+      <br />
+
+      <input class="q" name="give_food" placeholder="쏠 안주를 적어주세요." />
+      <br />
+
+      <input
+        class="q"
+        name="sex"
+        placeholder="남/여/남 형식으로 성별을 적어주세요"
+      />
+      <br />
+
+      <input
+        class="q"
+        name="talk_topic"
+        placeholder="토크 주제를 입력해주세요"
+      />
+      <br />
+      <div class="submit">
+        <button type="submit">석탑 쌓기!</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% for stone in stones %}
+<div><a href="http://127.0.0.1:8000/admin/">{{stone.give_food}}</a></div>
+{% endfor %} {% endblock section %}

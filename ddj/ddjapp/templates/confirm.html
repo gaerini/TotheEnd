@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>{{ user.give_food }} 석탑</h1>
+    <h2>참여 요청이 도착했습니다. 수락하시겠습니까?</h2>
+    <p>현재인원: {{ stoneRequest.current_member }}</p>
+    <p>희망인원: {{ stoneRequest.want_member }}</p>
+    <p>나이: {{ stoneRequest.age }}</p>
+    <p>성별: {{ stoneRequest.gender }}</p>
+    <p>토크안주: {{ stoneRequest.talk_topic }}</p>
+    <form action="{% url 'confirm' stoneRequest.receiver %}" method="post">
+      {% csrf_token %}
+      <button type="submit" name="action" value="accept">수락</button>
+      <button type="submit" name="action" value="reject">거절</button>
+    </form>
+  </body>
+</html>
