@@ -2,32 +2,33 @@
 <html lang="en">
   <head>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href=""/>
-    
+    <link rel="stylesheet" type="text/css" src="" />
+
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>안주석탑</title>
-    {% block css/title %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'baseStyle.css'%}">
-    {% endblock css/title %}
+    <link rel="stylesheet" href="{% static 'baseStyle.css'%}" />
+
+    {% block css/title %} {% endblock css/title %}
   </head>
   <body>
     <div id="navbar">
       {% if user.is_authenticated %}
-      <div class = "navbtn">짠</div>
+      <div class="navbtn">로그인 됨</div>
       {% else %}
-      <div class = "navbtn"><a href = "http://127.0.0.1:8000/registration/login/">로그인</a></div>
+      <div class="navbtn">
+        <a href="http://127.0.0.1:8000/registration/login/">로그인</a>
+      </div>
       {% endif %}
-      <div class = "navbtn"><a href = "http://127.0.0.1:8000/admin/">홈</a></div>
-      <div class = "navbtn"><a href = "http://127.0.0.1:8000/admin/">쪽지함</a></div>
-      <div class = "navbtn"><a href = "http://127.0.0.1:8000/registration/logout/">로그아웃</a></div>
+      <div class="navbtn"><a href="http://127.0.0.1:8000/">홈</a></div>
+      <div class="navbtn">
+        <a href="http://127.0.0.1:8000/admin/">쪽지함</a>
+      </div>
+      <div class="navbtn">
+        <a href="http://127.0.0.1:8000/registration/logout/">로그아웃</a>
+      </div>
     </div>
-    <div class = "contents">
-      {% block section %}
-      {% endblock section %}
-    </div>
-
+    <div class="contents">{% block section %} {% endblock section %}</div>
   </body>
 </html>

@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block css/title %}
+<title>Article List</title>
+{% load static %}
+<link rel="stylesheet" type="text/css" />
+{% endblock css/title %}
+{% block section %}
+<h1 class="title">쪽지함</h1>
+
+{% csrf_token %}
+<a href="http://127.0.0.1:8000/stone/">석탑 쌓기!</a>
+
+
+{% for stone in stones %}
+<div>
+    
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="hidden" value="{{stone.id}}" name='stone_id'/>
+        <button type='submit'>{{stone.give_food}}</button>
+    </form>
+    
+</div>
+{% endfor %}
+
+{% endblock section %}

@@ -34,18 +34,22 @@ def stoneRequest(request, room_id):
 
         room = Room.objects.get(id=room_id)
         sender = request.user
-        Request.objects.create(
-            sender=sender, 
-            receiver=room, 
-            member=member, 
-            talk_topic=talk_topic, 
-            age=age, 
-            sex=sex
-            )
-        
-        
-        
+        if room.matched == 0:
+            Request.objects.create(
+                sender=sender, 
+                receiver=room, 
+                member=member, 
+                talk_topic=talk_topic, 
+                age=age, 
+                sex=sex
+                )
+            Room.objects.filter(id=room_id).update(
+                    matched = 1
+                )
+        else :
+            return redirect('stone') # 여기에 오류 메세지, 이미 matched 됐다
 
+            
         
         return redirect('home')  # 홈페이지로 리다이렉트 혹은 메시지를 보여줄 수 있음
 
@@ -101,7 +105,7 @@ def detail(request, article_id):
         return redirect('detail', article_id)
     return render(request, 'detail.html', {'article':article})
 def delete(request, article_id):
-    article=Article.objects.get(id=article_id).delete()
+    article=Chatting.objects.get(id=article_id).delete()
     return redirect('home')
 
 def deleteComment(request, article_id, comment_id):
@@ -129,8 +133,15 @@ def confirm(request, room_id):
     if request.method == 'POST':
         action = request.POST.get('action')
 
-        if action == 'accept':
-            room.matched = True
+        if action == 'reject':
+            Room.objects.filter(id=room_id).update(
+                matched = 0
+            )
+        elif action == 'accept':    
+            Room.objects.filter(id=room_id).update(
+                matched = 2
+            )
+
         return redirect('home')
     
     return render(request, 'confirm.html', {'stoneRequest':stoneRequest})
@@ -147,10 +158,14 @@ def stone(request):
             age=request.POST['age'],
             give_food = request.POST['give_food'],
             sex = request.POST['sex'],
-            matched = False,
+            matched = 0,
         )
         return redirect('home')
     
     return render(request, 'stackStone.html')
 
+
+def jjokjiham(request, Room_id):
+    requests = Request.objects.get(reciever_id = Room_id)
+    return render(request, 'jjokjiham.html', {'requests': requests})
     

@@ -1,0 +1,65 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("https://img.freepik.com/free-photo/cobblestone-walkway-texture_1194-7009.jpg?w=1800&t=st=1684630040~exp=1684630640~hmac=a5c27f64639c83f302da5f4642a46ea8ee61a7a88a3873c3f8e56b8c759473b7");
+  background-size: cover;
+}
+
+.background-image {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.title {
+  margin: 0 auto;
+  padding-bottom: 5vw;
+  padding-top: 10vw;
+  text-align: center;
+}
+
+.stone-tower {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stone {
+  width: 45vw;
+  height: 30vw;
+  background-color: gray;
+  position: relative;
+  border-radius: 45%;
+  font-family: Helvetica;
+  font-size: larger;
+  margin-bottom: -2vw;
+}
+
+.plus {
+  border-radius: 1000px;
+  width: 15vw;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  margin-bottom: 10vw;
+  left: 42%;
+}
+.plus:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+  background-color: gray;
+}
+.plus span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+a {
+  text-decoration: none;
+  color: black;
+}

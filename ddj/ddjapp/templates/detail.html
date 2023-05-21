@@ -19,9 +19,8 @@
   </form>
   <div class="recomments">
     {% for recomment in comment.recomments.all %}
-    <p>{{recomment.content}}</p>
+    <p>{{recomment.content}}</p> {% endfor %}
+    </div>
     {% endfor %}
-  </div>
-  {% endfor %}
 </div>
 {% endblock section %}
